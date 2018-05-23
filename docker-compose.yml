@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  db_askme:
+    image: postgres
+    ports:
+      - "6000:5432"
+  web_askme:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:5000
+    volumes:
+      - .:/code
+    ports:
+      - "7000:5000"
+    depends_on:
+      - db_askme
+      #db_askme
+      #depends_on = links
+      #la noi dinh nghia
+
+
+      #note lai: sua duoc port 8000 thanh 5000 cua server
+      # sua duoc port o may tu 8000 thanh 7000 >> localhost:7000
+      #luc truoc co doi db thanh db_vidu, doi trong file setting,
+      #nhung khi dang nhap vao thi k cho, guess: tao user moi
